@@ -1,29 +1,44 @@
-pipeline {
+pipeline{
     agent any
 
- tools {
-     jdk 'java17'
-     maven 'maven3.6'
- }
+    tools{
+        jdk 'java17'
+        maven 'maven3.6'
+    }
+
+    stages{
+
+        stage('get checkout'){ 
+            steps{
+            git url : 'https://github.com/jaiswaladi246/Boardgame.git', branch : 'main'
+            }
+        }
     
-    stages {
-        
-        stage('Compile') {
-            steps {
-            sh  'mvn compile'
+
+         stage('compile'){
+            steps{
+                sh '''
+                mvn compile
+                '''
+            } 
+        }
+
+        stage('Testing'){
+            steps{
+                sh'''
+                mvn test
+                '''
             }
         }
-        
-        stage('Testing') {
-            steps {
-                sh 'mvn test'
+
+        stage('Building the project...!'){
+            steps{
+                sh'''
+                mvn package
+                '''
             }
         }
-        
-        stage('Building The Project') {
-            steps {
-                sh 'mvn package'
-            }
-        }
+
+
     }
 }
