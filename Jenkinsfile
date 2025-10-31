@@ -10,7 +10,7 @@ pipeline{
 
         stage('get checkout'){ 
             steps{
-            git url : 'https://github.com/jaiswaladi246/Boardgame.git', branch : 'main'
+            git url : 'https://github.com/ashwinidevops03/Boardgame.git', branch : 'main'
             }
         }
     
